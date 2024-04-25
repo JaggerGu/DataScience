@@ -1,12 +1,16 @@
-#! python3
-# -*- encoding: utf-8 -*-
-'''
-@File    :   dataanalysis.py
-@Time    :   2024/03/27 15:47:29
-@Author  :   Jagger 
-@Version :   1.0
-@Contact :   jiazegu@micron.com
-'''
+import numpy as np
+import matplotlib.pyplot as plt
 
-import pandas as pd
-import numpy as np 
+t = np.arange(0.0, 2.0, 0.01)
+s = np.sin(2 * np.pi * t)
+
+upper = 0.77
+lower = -0.77
+
+supper = np.ma.masked_where(s < upper, s)
+slower = np.ma.masked_where(s > lower, s)
+smiddle = np.ma.masked_where((s < lower) | (s > upper), s)
+
+fig, ax = plt.subplots()
+ax.plot(t, smiddle,)
+plt.show()
